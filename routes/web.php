@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('categories', function(){
+    return " halaman categories";
+});
+
+Route::get('categories/{id}', function($id){
+    return "halaman kategori ID".$id;
+});
+
+Route::resource('categories', 'CategoriesController')->except(['destroy']);
