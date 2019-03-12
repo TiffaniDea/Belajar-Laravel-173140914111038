@@ -24,3 +24,11 @@ Route::get('categories/{id}', function($id){
 });
 
 Route::resource('categories', 'CategoriesController')->except(['destroy']);
+
+Route::get('master', function(){
+    return view('layouts.master');
+});
+
+Route::get('index', function(){
+    return view('dashboard.index');
+});

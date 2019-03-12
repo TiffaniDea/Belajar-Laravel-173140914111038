@@ -13,10 +13,10 @@
   
 </head>
 <body>
-<table width='100%'>
+<table width='100%' height="500px">
 <tr>
-<td>@include('layouts.sidebar')<td>
-<td>@yield('content')</td>
+<th>@include('layouts.sidebar')</th>
+<th><center>@yield('content')</center></th>
 </tr>
 </table>
 
