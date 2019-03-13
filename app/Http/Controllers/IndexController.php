@@ -3,32 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Category;
 
-class CategoriesController extends Controller
+class IndexController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    /*public function index()
-    {
-        $Categories = Category::all();
-        //$Categories = variabel buat menyimpan data
-
-        // return view('<nama view>', compact <nama variable>)
-        return view('category', compact('Categories'));
-    }*/
-
-    public function cari(Request $request)
+    public function index(Request $request)
     {
         $cari = $request->cari;
 
         $Categories = Category::where('name','like',"%".$cari."%")->paginate();
 
         return view('category.index',['Categories' => $Categories]);
+
+        //$Categories = Category::all();
+        //$Categories = variabel buat menyimpan data
+
+        // return view('<nama view>', compact <nama variable>)
+       // return view('category.index', compact('Categories'));
     }
+
+    /*public function cari(Request $request)
+    {
+        $cari = $request->cari;
+
+        $Categories = Category::where('name','like',"%".$cari."%")->paginate();
+
+        return view('category.index',['Categories' => $Categories]);
+    }*/
 
         
 

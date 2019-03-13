@@ -25,6 +25,7 @@ Route::get('categories/{id}', function($id){
 
 Route::resource('categories', 'CategoriesController')->except(['destroy']);
 
+
 Route::get('master', function(){
     return view('layouts.master');
 });
@@ -36,3 +37,11 @@ Route::get('index', function(){
 Route::get('dashboard', function(){
     return view('dashboard');
 });
+
+
+Route::resource('kategori', 'IndexController');
+
+Route::get('cari', 'CategoriesController@cari');
+
+    
+
