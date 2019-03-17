@@ -15,27 +15,27 @@ class IndexController extends Controller
      */
     public function index(Request $request)
     {
-        $cari = $request->cari;
+        //$cari = $request->cari;
 
-        $Categories = Category::where('name','like',"%".$cari."%")->paginate();
+        //$Categories = Category::where('name','like',"%".$cari."%")->paginate();
 
-        return view('category.index',['Categories' => $Categories]);
+        //return view('category.index',['Categories' => $Categories]);
 
-        //$Categories = Category::all();
+        $Categories = Category::all();
         //$Categories = variabel buat menyimpan data
 
-        // return view('<nama view>', compact <nama variable>)
-       // return view('category.index', compact('Categories'));
+        //return view('<nama view>', compact <nama variable>)
+        return view('category.index', compact('Categories'));
     }
 
-    /*public function cari(Request $request)
+    public function cari(Request $request)
     {
         $cari = $request->cari;
 
         $Categories = Category::where('name','like',"%".$cari."%")->paginate();
 
         return view('category.index',['Categories' => $Categories]);
-    }*/
+    }
 
         
 
@@ -44,9 +44,26 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function tambah()
     {
-        //
+        return view('category.create');
+    }
+
+    public function create(Request $request)
+    {
+        DB::table('categories')->insert([
+            'category_id' => $request->category_id,
+            'name' => $request->name,
+            'slug' => $request->slug
+        ]);
+        return redirect('kategori');
+    }
+
+    public function hapus($id)
+    {
+        $Categories = Category::where('category_id',$id)->delete();
+
+        return redirect('kategori');
     }
 
     /**
@@ -79,7 +96,9 @@ class IndexController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Categories=Category::where('category_id',$id)->get();
+
+        return view('category.update',['Categories' => $Categories]);
     }
 
     /**
@@ -89,9 +108,15 @@ class IndexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        DB::table('categories')->where('category_id',$request->category_id)->update([
+            'category_id' => $request->category_id,
+            'name' => $request->name,
+            'slug' => $request->slug
+        ]);
+        return redirect('kategori');
+        
     }
 
     /**

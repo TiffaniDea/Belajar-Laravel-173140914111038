@@ -323,6 +323,11 @@
       <div class="row">
         <div class="col-md-6">
           <div class="box">
+          <ol class="breadcrumb">
+        
+        <li><a href="tambah">Tambah Kategori</a></li>
+       
+      </ol>
             
             <form action="cari" method="GET">
                 <input type="text" name="cari" placeholder="Cari" value="{{ old('cari') }}">
@@ -338,6 +343,7 @@
                   <th style="width: 10px">ID</th>
                   <th>Nama</th>
                   <th>Slug</th>
+                  <th>Aksi</th>
                 </tr>
                 
    @foreach($Categories as $categories)
@@ -345,6 +351,11 @@
         <td>{{$categories->category_id}}</td>
         <td>{{$categories->name}}</td>
         <td>{{$categories->slug}}</td>
+        <td>
+		<a href="edit/{{ $categories->category_id }}">Edit</a>
+		|
+		<a href="hapus/{{ $categories->category_id }}">Hapus</a>
+	</td>
    </tr>
       @endforeach
        

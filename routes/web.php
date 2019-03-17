@@ -41,7 +41,13 @@ Route::get('dashboard', function(){
 
 Route::resource('kategori', 'IndexController');
 
-Route::get('cari', 'CategoriesController@cari');
+Route::get('cari', 'IndexController@cari');
+
+Route::get('tambah', 'IndexController@tambah');
+Route::post('create', 'IndexController@create');
+Route::get('edit/{id}', 'IndexController@edit');
+Route::post('/update', 'IndexController@update');
+Route::get('hapus/{id}', 'IndexController@hapus');
 
     
 
